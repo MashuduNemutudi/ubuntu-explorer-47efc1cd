@@ -15,6 +15,11 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        // Ubuntu Explorer variants
+        ubuntu: "bg-ubuntu-blue text-white hover:bg-ubuntu-dark shadow-ubuntu transition-bounce",
+        gold: "bg-ubuntu-gold text-ubuntu-dark hover:bg-ubuntu-gold/90 font-bold shadow-gold transition-bounce",
+        hero: "bg-ubuntu-gold hover:bg-ubuntu-gold/90 text-ubuntu-dark font-bold shadow-gold animate-pulse-gold",
+        emergency: "bg-red-500 hover:bg-red-600 text-white shadow-lg emergency-pulse",
       },
       size: {
         default: "h-10 px-4 py-2",

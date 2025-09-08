@@ -1,13 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Ubuntu Explorer Design System - All colors, gradients, fonts, etc defined here */
 
 @layer base {
   :root {
+    /* Ubuntu Explorer Color Palette */
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
@@ -17,8 +18,13 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Ubuntu Explorer Brand Colors */
+    --primary: 217 87% 39%; /* ubuntu-blue #1e40af */
+    --primary-foreground: 0 0% 100%;
+    
+    --ubuntu-dark: 217 79% 32%; /* #1e3a8a */
+    --ubuntu-light: 213 94% 68%; /* #3b82f6 */
+    --ubuntu-gold: 43 96% 56%; /* #f59e0b */
 
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -26,7 +32,7 @@ All colors MUST be HSL.
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
+    --accent: 43 96% 56%; /* ubuntu-gold */
     --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
@@ -34,9 +40,23 @@ All colors MUST be HSL.
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 217 87% 39%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Ubuntu Explorer Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--ubuntu-dark)) 0%, hsl(var(--primary)) 50%, hsl(var(--ubuntu-light)) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(var(--ubuntu-gold)) 0%, hsl(43 96% 50%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(210 40% 98%) 100%);
+
+    /* Shadows with Ubuntu theme */
+    --shadow-ubuntu: 0 10px 30px -10px hsl(var(--primary) / 0.3);
+    --shadow-gold: 0 8px 25px -8px hsl(var(--ubuntu-gold) / 0.4);
+    --shadow-card: 0 4px 20px -4px hsl(var(--primary) / 0.1);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +120,94 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-poppins;
+  }
+}
+
+@layer components {
+  /* Ubuntu Explorer Custom Components */
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+  
+  .accent-gradient {
+    background: var(--gradient-accent);
+  }
+  
+  .card-gradient {
+    background: var(--gradient-card);
+  }
+
+  .shadow-ubuntu {
+    box-shadow: var(--shadow-ubuntu);
+  }
+  
+  .shadow-gold {
+    box-shadow: var(--shadow-gold);
+  }
+  
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+
+  /* Floating animation for hero elements */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  @keyframes fadeInUp {
+    from { 
+      opacity: 0; 
+      transform: translate3d(0, 30px, 0); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translate3d(0, 0, 0); 
+    }
+  }
+  
+  @keyframes pulse-gold {
+    0%, 100% { 
+      box-shadow: 0 0 0 0 hsl(var(--ubuntu-gold) / 0.4);
+    }
+    50% { 
+      box-shadow: 0 0 0 10px hsl(var(--ubuntu-gold) / 0);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-fadeInUp {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+  
+  .animate-pulse-gold {
+    animation: pulse-gold 2s infinite;
+  }
+
+  /* Custom hover effects for cards */
+  .hover-lift {
+    transition: var(--transition-smooth);
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-ubuntu);
+  }
+
+  /* Emergency button styles */
+  .emergency-pulse {
+    animation: pulse-gold 1.5s infinite;
   }
 }
