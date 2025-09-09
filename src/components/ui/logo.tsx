@@ -1,33 +1,19 @@
 import { IconWorld } from "@tabler/icons-react";
 
 interface LogoProps {
-  size?: "sm" | "md" | "lg";
-  showText?: boolean;
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
 }
 
-export const Logo = ({ size = "md", showText = true }: LogoProps) => {
-  const iconSizes = {
-    sm: "h-6 w-6",
-    md: "h-8 w-8", 
-    lg: "h-12 w-12"
-  };
-
-  const textSizes = {
-    sm: "text-lg",
-    md: "text-xl",
-    lg: "text-3xl"
-  };
-
+export const Logo = ({ size = 'md', className = '' }: LogoProps) => {
   return (
-    <div className="flex items-center">
-      <div className={`${iconSizes[size]} rounded-full bg-ubuntu-gold flex items-center justify-center mr-2`}>
-        <IconWorld className="h-5 w-5 text-white" />
+    <div className={`logo ${className}`}>
+      <div className={`logo-icon ${size}`}>
+        <IconWorld className="h-4 w-4 text-white" />
       </div>
-      {showText && (
-        <span className={`text-foreground font-bold ${textSizes[size]}`}>
-          Ubuntu<span className="text-ubuntu-gold">Explorer</span>
-        </span>
-      )}
+      <span className={`logo-text ${size}`}>
+        Ubuntu<span className="logo-accent">Explorer</span>
+      </span>
     </div>
   );
 };
